@@ -7,11 +7,14 @@ import {
   TextInput,
   FormDataConsumer
 } from "react-admin";
+import moment from "moment";
 import penyelenggara from "..";
 import lingkup_src from "../../lingkup";
 import jenis_pomdam_src from "../../jenis_pomdam";
 import PersonelForm from "../../personel/components/PersonelForm";
 import PenyelenggaraCreateToolbar from "./helpers/PenyelenggaraCreateToolbar";
+
+const created = moment();
 
 const PenyelenggaraCreate = props => {
   const {
@@ -28,9 +31,18 @@ const PenyelenggaraCreate = props => {
     formData[jenis_pomdam.source] &&
     formData[jenis_pomdam.source] === 2;
 
+  const initialValues = {
+    created: created,
+    updated: created
+  };
+
   return (
     <Create {...props} {...create} record={{ komandan: personel }}>
-      <SimpleForm variant="outlined" toolbar={<PenyelenggaraCreateToolbar />}>
+      <SimpleForm
+        variant="outlined"
+        toolbar={<PenyelenggaraCreateToolbar />}
+        initialValues={initialValues}
+      >
         <ReferenceInput {...lingkup}>
           <SelectInput optionText={lingkup_src.fields.nama.source} />
         </ReferenceInput>
