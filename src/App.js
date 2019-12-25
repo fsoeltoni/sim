@@ -13,12 +13,16 @@ import penyelenggara from "./resources/penyelenggara";
 import personel from "./resources/personel";
 import pengguna from "./resources/pengguna";
 import auth from "./providers/auth";
+import gol_sim from "./resources/gol_sim";
+import jenis_pengajuan_sim from "./resources/jenis_pengajuan_sim";
 
 const dataProvider = data;
 const authProvider = auth;
 
 const App = () => (
   <Admin title={title} dataProvider={dataProvider} authProvider={authProvider}>
+    <Resource {...jenis_pengajuan_sim.identities} />
+    <Resource {...gol_sim.identities} />
     <Resource {...pengguna.identities} />
     <Resource {...penyelenggara.identities} />
     <Resource {...personel.identities} />
