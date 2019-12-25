@@ -15,12 +15,20 @@ import pengguna from "./resources/pengguna";
 import auth from "./providers/auth";
 import gol_sim from "./resources/gol_sim";
 import jenis_pengajuan_sim from "./resources/jenis_pengajuan_sim";
+import sim from "./resources/sim";
+import route from "./providers/route";
 
 const dataProvider = data;
 const authProvider = auth;
-
+const customRoutes = route;
 const App = () => (
-  <Admin title={title} dataProvider={dataProvider} authProvider={authProvider}>
+  <Admin
+    title={title}
+    dataProvider={dataProvider}
+    authProvider={authProvider}
+    customRoutes={customRoutes}
+  >
+    <Resource {...sim.identities} />
     <Resource {...jenis_pengajuan_sim.identities} />
     <Resource {...gol_sim.identities} />
     <Resource {...pengguna.identities} />
