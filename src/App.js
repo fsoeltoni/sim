@@ -4,11 +4,13 @@ import { title } from "./providers/attrs";
 import data from "./providers/data";
 import kota_kab from "./resources/kota_kab";
 import lingkup from "./resources/lingkup";
+import jenis_pomdam from "./resources/jenis_pomdam";
 
 const dataProvider = data;
 
 const App = () => (
   <Admin title={title} dataProvider={dataProvider}>
+    <Resource {...jenis_pomdam.identities} />
     <Resource {...lingkup.identities} />
     <Resource {...kota_kab.identities} />
   </Admin>
