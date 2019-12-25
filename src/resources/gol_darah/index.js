@@ -24,7 +24,7 @@ const fields = {
   }
 };
 
-const GolDarahCreate = props => {
+const GolDarahCreate = ({ permissions, ...props }) => {
   const initialValues = {
     created: moment.now(),
     updated: moment.now()
@@ -43,7 +43,7 @@ const GolDarahCreate = props => {
   );
 };
 
-const GolDarahEdit = props => {
+const GolDarahEdit = ({ permissions, ...props }) => {
   const initialValues = {
     updated: moment()
   };
@@ -57,7 +57,7 @@ const GolDarahEdit = props => {
   );
 };
 
-const GolDarahList = props => {
+const GolDarahList = ({ permissions, ...props }) => {
   return (
     <List {...props} {...components.list}>
       <Datagrid>

@@ -16,7 +16,7 @@ import PenyelenggaraCreateToolbar from "./helpers/PenyelenggaraCreateToolbar";
 
 const created = moment();
 
-const PenyelenggaraCreate = props => {
+const PenyelenggaraCreate = ({ permissions, ...props }) => {
   const {
     components: { create },
     fields: { lingkup, jenis_pomdam, nama, kode_romawi, kode, markas }

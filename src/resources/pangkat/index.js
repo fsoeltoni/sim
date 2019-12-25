@@ -28,7 +28,7 @@ const fields = {
   }
 };
 
-const PangkatCreate = props => {
+const PangkatCreate = ({ permissions, ...props }) => {
   const initialValues = {
     created: moment.now(),
     updated: moment.now()
@@ -48,7 +48,7 @@ const PangkatCreate = props => {
   );
 };
 
-const PangkatEdit = props => {
+const PangkatEdit = ({ permissions, ...props }) => {
   const initialValues = {
     updated: moment()
   };
@@ -63,7 +63,7 @@ const PangkatEdit = props => {
   );
 };
 
-const PangkatList = props => {
+const PangkatList = ({ permissions, ...props }) => {
   return (
     <List {...props} {...components.list}>
       <Datagrid>

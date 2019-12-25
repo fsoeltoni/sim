@@ -14,7 +14,7 @@ import PersonelForm from "../../personel/components/PersonelForm";
 
 const created = moment();
 
-const PenggunaCreate = props => {
+const PenggunaCreate = ({ permissions, ...props }) => {
   const {
     components: { create },
     fields: { penyelenggara, kata_sandi }

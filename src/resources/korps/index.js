@@ -28,7 +28,7 @@ const fields = {
   }
 };
 
-const KorpsCreate = props => {
+const KorpsCreate = ({ permissions, ...props }) => {
   const initialValues = {
     created: moment.now(),
     updated: moment.now()
@@ -48,7 +48,7 @@ const KorpsCreate = props => {
   );
 };
 
-const KorpsEdit = props => {
+const KorpsEdit = ({ permissions, ...props }) => {
   const initialValues = {
     updated: moment()
   };
@@ -63,7 +63,7 @@ const KorpsEdit = props => {
   );
 };
 
-const KorpsList = props => {
+const KorpsList = ({ permissions, ...props }) => {
   return (
     <List {...props} {...components.list}>
       <Datagrid>

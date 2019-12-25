@@ -24,7 +24,7 @@ const fields = {
   }
 };
 
-const JenisPomdamCreate = props => {
+const JenisPomdamCreate = ({ permissions, ...props }) => {
   const initialValues = {
     created: moment.now(),
     updated: moment.now()
@@ -43,7 +43,7 @@ const JenisPomdamCreate = props => {
   );
 };
 
-const JenisPomdamEdit = props => {
+const JenisPomdamEdit = ({ permissions, ...props }) => {
   const initialValues = {
     updated: moment()
   };
@@ -57,7 +57,7 @@ const JenisPomdamEdit = props => {
   );
 };
 
-const JenisPomdamList = props => {
+const JenisPomdamList = ({ permissions, ...props }) => {
   return (
     <List {...props} {...components.list}>
       <Datagrid>

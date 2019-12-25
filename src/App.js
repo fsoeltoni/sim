@@ -12,11 +12,13 @@ import korps from "./resources/korps";
 import penyelenggara from "./resources/penyelenggara";
 import personel from "./resources/personel";
 import pengguna from "./resources/pengguna";
+import auth from "./providers/auth";
 
 const dataProvider = data;
+const authProvider = auth;
 
 const App = () => (
-  <Admin title={title} dataProvider={dataProvider}>
+  <Admin title={title} dataProvider={dataProvider} authProvider={authProvider}>
     <Resource {...pengguna.identities} />
     <Resource {...penyelenggara.identities} />
     <Resource {...personel.identities} />

@@ -28,7 +28,7 @@ const fields = {
   }
 };
 
-const KotaKabCreate = props => {
+const KotaKabCreate = ({ permissions, ...props }) => {
   const initialValues = {
     created: moment.now(),
     updated: moment.now()
@@ -48,7 +48,7 @@ const KotaKabCreate = props => {
   );
 };
 
-const KotaKabEdit = props => {
+const KotaKabEdit = ({ permissions, ...props }) => {
   const initialValues = {
     updated: moment()
   };
@@ -63,7 +63,7 @@ const KotaKabEdit = props => {
   );
 };
 
-const KotaKabList = props => {
+const KotaKabList = ({ permissions, ...props }) => {
   return (
     <List {...props} {...components.list}>
       <Datagrid>

@@ -24,7 +24,7 @@ const fields = {
   }
 };
 
-const LingkupCreate = props => {
+const LingkupCreate = ({ permissions, ...props }) => {
   const initialValues = {
     created: moment.now(),
     updated: moment.now()
@@ -43,7 +43,7 @@ const LingkupCreate = props => {
   );
 };
 
-const LingkupEdit = props => {
+const LingkupEdit = ({ permissions, ...props }) => {
   const initialValues = {
     updated: moment()
   };
@@ -57,7 +57,7 @@ const LingkupEdit = props => {
   );
 };
 
-const LingkupList = props => {
+const LingkupList = ({ permissions, ...props }) => {
   return (
     <List {...props} {...components.list}>
       <Datagrid>
