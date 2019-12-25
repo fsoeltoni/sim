@@ -9,11 +9,15 @@ import jenis_personel from "./resources/jenis_personel";
 import gol_darah from "./resources/gol_darah";
 import pangkat from "./resources/pangkat";
 import korps from "./resources/korps";
+import penyelenggara from "./resources/penyelenggara";
+import personel from "./resources/personel";
 
 const dataProvider = data;
 
 const App = () => (
   <Admin title={title} dataProvider={dataProvider}>
+    <Resource {...penyelenggara.identities} />
+    <Resource {...personel.identities} />
     <Resource {...korps.identities} />
     <Resource {...pangkat.identities} />
     <Resource {...gol_darah.identities} />
