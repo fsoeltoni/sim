@@ -6,11 +6,13 @@ import kota_kab from "./resources/kota_kab";
 import lingkup from "./resources/lingkup";
 import jenis_pomdam from "./resources/jenis_pomdam";
 import jenis_personel from "./resources/jenis_personel";
+import gol_darah from "./resources/gol_darah";
 
 const dataProvider = data;
 
 const App = () => (
   <Admin title={title} dataProvider={dataProvider}>
+    <Resource {...gol_darah.identities} />
     <Resource {...jenis_personel.identities} />
     <Resource {...jenis_pomdam.identities} />
     <Resource {...lingkup.identities} />
