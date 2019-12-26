@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Title, useDataProvider } from "react-admin";
 import moment from "moment";
 import { Card, CardContent, CardActions, Button } from "@material-ui/core";
 import monthToRoman from "./monthToRoman";
 import SimCanvas from "./SimCanvas";
+import ReactToPrint from "react-to-print";
 
 const SimPrint = ({
   match: {
@@ -11,6 +12,7 @@ const SimPrint = ({
   }
 }) => {
   const dataProvider = useDataProvider();
+  const componentRef = useRef();
   const [sim, setSim] = useState();
   const [jenis_pengajuan_sim, setPengajuanSim] = useState();
   const [gol_sim, setGolonganSim] = useState();
@@ -175,6 +177,7 @@ const SimPrint = ({
           display_nama_komandan &&
           display_pangkat_korps_no_identitas_komandan && (
             <SimCanvas
+              ref={componentRef}
               sim_id={display_sim_id}
               kode_sim={display_kode_sim}
               nama={display_nama}
@@ -193,6 +196,16 @@ const SimPrint = ({
             />
           )}
       </CardContent>
+      <CardActions>
+        <ReactToPrint
+          trigger={() => (
+            <Button variant="contained" color="primary">
+              Cetak
+            </Button>
+          )}
+          content={() => componentRef.current}
+        />
+      </CardActions>
     </Card>
   );
 };
