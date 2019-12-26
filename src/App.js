@@ -17,6 +17,7 @@ import gol_sim from "./resources/gol_sim";
 import jenis_pengajuan_sim from "./resources/jenis_pengajuan_sim";
 import sim from "./resources/sim";
 import route from "./providers/route";
+import jenis_pengguna from "./resources/jenis_pengguna";
 
 const dataProvider = data;
 const authProvider = auth;
@@ -32,6 +33,7 @@ const App = () => (
     <Resource {...jenis_pengajuan_sim.identities} />
     <Resource {...gol_sim.identities} />
     <Resource {...pengguna.identities} />
+    <Resource {...jenis_pengguna.identities} />
     <Resource {...penyelenggara.identities} />
     <Resource {...personel.identities} />
     <Resource {...korps.identities} />

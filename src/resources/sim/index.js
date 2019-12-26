@@ -3,6 +3,8 @@ import personel from "../personel";
 import SimCreate from "./components/SimCreate";
 import jenis_pengajuan_sim from "../jenis_pengajuan_sim";
 import gol_sim from "../gol_sim";
+import SimList from "./components/SimList";
+import SimEdit from "./components/SimEdit";
 
 const fields = {
   id: {
@@ -27,7 +29,25 @@ const fields = {
       order: "ASC"
     }
   },
-  personel: { ...personel.fields("personel") }
+  personel: { ...personel.fields("personel") },
+  created: {
+    source: "created",
+    label: "Dibuat pada"
+  },
+  berlaku_hingga: {
+    source: "berlaku_hingga",
+    label: "Berlaku Hingga"
+  },
+  personel_id: {
+    source: "personel_id",
+    reference: "personel",
+    label: "Personel"
+  },
+  penyelenggara: {
+    source: "penyelenggara_id",
+    reference: "penyelenggara",
+    label: "Penyelenggara"
+  }
 };
 
 const identities = {
@@ -35,7 +55,9 @@ const identities = {
   options: {
     label: "SIM"
   },
-  create: SimCreate
+  create: SimCreate,
+  list: SimList,
+  edit: SimEdit
 };
 
 const components = {

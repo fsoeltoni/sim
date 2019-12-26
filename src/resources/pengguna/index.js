@@ -2,11 +2,32 @@ import { properties } from "../attrs";
 import personel from "../personel";
 import PenggunaCreate from "./components/PenggunaCreate";
 import penyelenggara from "../penyelenggara";
+import PenggunaList from "./components/PenggunaList";
+import lingkup from "../lingkup";
+import jenis_pengguna from "../jenis_pengguna";
 
 const fields = {
   id: {
     source: "id",
     label: "Id"
+  },
+  lingkup: {
+    source: lingkup.identities.name + "_id",
+    label: lingkup.identities.options.label,
+    reference: lingkup.identities.name,
+    sort: {
+      field: lingkup.fields.id.source,
+      order: "ASC"
+    }
+  },
+  jenis_pengguna: {
+    source: jenis_pengguna.identities.name + "_id",
+    label: jenis_pengguna.identities.options.label,
+    reference: jenis_pengguna.identities.name,
+    sort: {
+      field: jenis_pengguna.fields.id.source,
+      order: "ASC"
+    }
   },
   penyelenggara: {
     source: penyelenggara.identities.name + "_id",
@@ -17,10 +38,15 @@ const fields = {
       order: "ASC"
     }
   },
-  personel: { ...personel.fields("personel") },
   kata_sandi: {
     source: "kata_sandi",
     label: "Kata Sandi"
+  },
+  personel_form: { ...personel.fields("personel") },
+  personel: {
+    source: personel.identities.name + "_id",
+    label: personel.identities.options.label,
+    reference: personel.identities.name
   }
 };
 
@@ -29,7 +55,8 @@ const identities = {
   options: {
     label: "Pengguna"
   },
-  create: PenggunaCreate
+  create: PenggunaCreate,
+  list: PenggunaList
 };
 
 const components = {
@@ -48,4 +75,6 @@ const components = {
   }
 };
 
-export default { identities, fields, components };
+const prefix = "personel";
+
+export default { identities, fields, components, prefix };

@@ -343,7 +343,7 @@ class SimCanvas extends Component {
 
   render() {
     const {
-      no_sim,
+      kode_sim,
       nama,
       tempat_tanggal_lahir,
       pangkat_korps_no_identitas,
@@ -362,15 +362,7 @@ class SimCanvas extends Component {
         <img src={this.state.image} width={325} height={204}></img>
         <Stage width={325} height={204} ref={ref => (this.stageRef = ref)}>
           <Layer>
-            {/* <Rect
-              x={0}
-              y={0}
-              width={325}
-              height={204}
-              shadowBlur={5}
-              fill="blue"
-            /> */}
-            <NoSim x={55} y={38} content={no_sim} />
+            <NoSim x={55} y={38} content={kode_sim} />
             <DataPribadi
               x={10}
               y={55}
@@ -428,14 +420,14 @@ class SimCanvas extends Component {
               x={10}
               y={105}
               image={this.state.sidik_jari}
-              width={35}
-              height={40}
+              width={45}
+              height={50}
             ></Image>
             <Image
-              x={-65}
-              y={135}
-              width={200}
-              height={40}
+              x={-25}
+              y={150}
+              width={150}
+              height={30}
               image={this.state.signature}
             ></Image>
           </Layer>

@@ -122,6 +122,13 @@ const SimPrint = ({
     display_pangkat + display_korps + +display_no_identitas;
   const display_kesatuan = personel ? personel.kesatuan : null;
   const display_gol_darah = gol_darah ? gol_darah.nama : null;
+  const display_pas_foto = sim ? sim.pas_foto : null;
+  const display_sidik_jari = sim
+    ? sim.sidik_jari
+      ? sim.sidik_jari.src
+      : null
+    : null;
+  const display_tanda_tangan = sim ? sim.tanda_tangan : null;
   const display_diberikan_di = penyelenggara ? penyelenggara.markas : null;
   const display_pada_tanggal = sim
     ? moment(sim.created).format("DD-MM-YYYY")
@@ -158,6 +165,11 @@ const SimPrint = ({
     display_pangkat_komandan +
     display_korps_komandan +
     display_no_identitas_komandan;
+  const display_tanda_tangan_komandan = penyelenggara
+    ? penyelenggara.tanda_tangan
+    : null;
+
+  console.log(display_sidik_jari);
 
   return (
     <Card>
@@ -167,15 +179,14 @@ const SimPrint = ({
           display_kode_sim &&
           display_nama &&
           display_tempat_tanggal_lahir &&
-          display_pangkat_korps_no_identitas &&
-          display_kesatuan &&
           display_gol_darah &&
           display_diberikan_di &&
           display_pada_tanggal &&
           display_berlaku_hingga &&
           display_label_komandan &&
           display_nama_komandan &&
-          display_pangkat_korps_no_identitas_komandan && (
+          display_pangkat_korps_no_identitas_komandan &&
+          display_pas_foto && (
             <SimCanvas
               ref={componentRef}
               sim_id={display_sim_id}
@@ -193,6 +204,10 @@ const SimPrint = ({
               pangkat_korps_no_identitas_komandan={
                 display_pangkat_korps_no_identitas_komandan
               }
+              pas_foto={display_pas_foto}
+              tanda_tangan={display_tanda_tangan}
+              tanda_tangan_komandan={display_tanda_tangan_komandan}
+              sidik_jari={display_sidik_jari}
             />
           )}
       </CardContent>

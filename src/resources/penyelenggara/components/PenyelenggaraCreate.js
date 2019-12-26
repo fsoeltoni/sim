@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import {
   Create,
-  SimpleForm,
+  TabbedForm,
   ReferenceInput,
   SelectInput,
   TextInput,
-  FormDataConsumer
+  FormDataConsumer,
+  ImageInput,
+  ImageField,
+  FormTab
 } from "react-admin";
 import moment from "moment";
 import penyelenggara from "..";
@@ -13,6 +16,7 @@ import lingkup_src from "../../lingkup";
 import jenis_pomdam_src from "../../jenis_pomdam";
 import PersonelForm from "../../personel/components/PersonelForm";
 import PenyelenggaraCreateToolbar from "./helpers/PenyelenggaraCreateToolbar";
+import SignaturePadInput from "../../../helpers/input/SignaturePadInput";
 
 const created = moment();
 
@@ -38,38 +42,58 @@ const PenyelenggaraCreate = ({ permissions, ...props }) => {
 
   return (
     <Create {...props} {...create} record={{ komandan: personel }}>
-      <SimpleForm
+      <TabbedForm
         variant="outlined"
         toolbar={<PenyelenggaraCreateToolbar />}
         initialValues={initialValues}
       >
-        <ReferenceInput {...lingkup}>
-          <SelectInput optionText={lingkup_src.fields.nama.source} />
-        </ReferenceInput>
-        <FormDataConsumer>
-          {({ formData, ...rest }) =>
-            isPomdam(formData) && (
-              <ReferenceInput {...jenis_pomdam} {...rest}>
-                <SelectInput optionText={jenis_pomdam_src.fields.nama.source} />
-              </ReferenceInput>
-            )
-          }
-        </FormDataConsumer>
-        <TextInput {...nama} />
-        <FormDataConsumer>
-          {({ formData, ...rest }) =>
-            isUmum(formData) && <TextInput {...kode_romawi} {...rest} />
-          }
-        </FormDataConsumer>
+        <FormTab label="Keterangan">
+          <ReferenceInput {...lingkup}>
+            <SelectInput optionText={lingkup_src.fields.nama.source} />
+          </ReferenceInput>
+          <FormDataConsumer>
+            {({ formData, ...rest }) =>
+              isPomdam(formData) && (
+                <ReferenceInput {...jenis_pomdam} {...rest}>
+                  <SelectInput
+                    optionText={jenis_pomdam_src.fields.nama.source}
+                  />
+                </ReferenceInput>
+              )
+            }
+          </FormDataConsumer>
+          <TextInput {...nama} />
+          <FormDataConsumer>
+            {({ formData, ...rest }) =>
+              isUmum(formData) && <TextInput {...kode_romawi} {...rest} />
+            }
+          </FormDataConsumer>
 
-        <TextInput {...kode} />
-        <TextInput {...markas} />
-        <PersonelForm
-          prefix="komandan"
-          setPersonel={setPersonel}
-          personel={personel}
-        />
-      </SimpleForm>
+          <TextInput {...kode} />
+          <TextInput {...markas} />
+        </FormTab>
+        <FormTab label="Komandan">
+          <PersonelForm
+            prefix="komandan"
+            setPersonel={setPersonel}
+            personel={personel}
+          />
+        </FormTab>
+        <FormTab label="Tanda Tangan Komandan">
+          <SignaturePadInput />
+        </FormTab>
+        <FormTab label="Stempel">
+          <ImageInput
+            source="stempel"
+            label="Stempel"
+            accept="image/*"
+            multiple={false}
+            placeholder={<p>Masukkan stempel</p>}
+          >
+            <ImageField source="src" title="title" />
+          </ImageInput>
+        </FormTab>
+      </TabbedForm>
     </Create>
   );
 };

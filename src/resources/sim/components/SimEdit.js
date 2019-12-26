@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Create,
+  Edit,
   TabbedForm,
   ReferenceInput,
   SelectInput,
@@ -19,7 +19,7 @@ import sim from "..";
 
 const created = moment();
 
-const SimCreate = ({ permissions, ...props }) => {
+const SimEdit = ({ permissions, ...props }) => {
   const {
     components: { create },
     fields: { jenis_pengajuan_sim, gol_sim }
@@ -35,7 +35,7 @@ const SimCreate = ({ permissions, ...props }) => {
   };
 
   return permissions ? (
-    <Create {...props} {...create} record={{ personel: personel }}>
+    <Edit {...props} {...create} record={{ personel: personel }}>
       <TabbedForm
         variant="outlined"
         toolbar={<SimCreateToolbar />}
@@ -76,8 +76,8 @@ const SimCreate = ({ permissions, ...props }) => {
           </ImageInput>
         </FormTab>
       </TabbedForm>
-    </Create>
+    </Edit>
   ) : null;
 };
 
-export default SimCreate;
+export default SimEdit;

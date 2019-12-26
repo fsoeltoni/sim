@@ -3,6 +3,7 @@ import jenis_pomdam from "../jenis_pomdam";
 import { properties } from "../attrs";
 import personel from "../personel";
 import PenyelenggaraCreate from "./components/PenyelenggaraCreate";
+import PenyelenggaraList from "./components/PenyelenggaraList";
 
 const fields = {
   id: {
@@ -51,7 +52,8 @@ const identities = {
   options: {
     label: "Penyelenggara"
   },
-  create: PenyelenggaraCreate
+  create: PenyelenggaraCreate,
+  list: PenyelenggaraList
 };
 
 const components = {
@@ -70,4 +72,9 @@ const components = {
   }
 };
 
-export default { identities, fields, components };
+const helpers = {
+  penyelenggaraOptionText: ({ kode_romawi, kode }) =>
+    (kode_romawi ? kode_romawi + "/" : "") + kode
+};
+
+export default { identities, fields, components, helpers };
