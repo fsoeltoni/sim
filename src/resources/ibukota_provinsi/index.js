@@ -21,14 +21,10 @@ const fields = {
   nama: {
     source: "nama",
     label: "Nama"
-  },
-  kode: {
-    source: "kode",
-    label: "Kode"
   }
 };
 
-const KotaKabCreate = ({ permissions, ...props }) => {
+const IbukotaProvinsiCreate = ({ permissions, ...props }) => {
   const initialValues = {
     created: moment.now(),
     updated: moment.now()
@@ -42,13 +38,12 @@ const KotaKabCreate = ({ permissions, ...props }) => {
         redirect="list"
       >
         <TextInput {...fields.nama} />
-        <TextInput {...fields.kode} />
       </SimpleForm>
     </Create>
   );
 };
 
-const KotaKabEdit = ({ permissions, ...props }) => {
+const IbukotaProvinsiEdit = ({ permissions, ...props }) => {
   const initialValues = {
     updated: moment()
   };
@@ -57,18 +52,16 @@ const KotaKabEdit = ({ permissions, ...props }) => {
     <Edit {...props} {...components.edit}>
       <SimpleForm variant="outlined" initialValues={initialValues}>
         <TextInput {...fields.nama} />
-        <TextInput {...fields.kode} />
       </SimpleForm>
     </Edit>
   );
 };
 
-const KotaKabList = ({ permissions, ...props }) => {
+const IbukotaProvinsiList = ({ permissions, ...props }) => {
   return (
     <List {...props} {...components.list}>
       <Datagrid>
         <TextField {...fields.nama} />
-        <TextField {...fields.kode} />
         <EditButton />
         <DeleteButton />
       </Datagrid>
@@ -77,13 +70,13 @@ const KotaKabList = ({ permissions, ...props }) => {
 };
 
 const identities = {
-  name: "kota_kab",
+  name: "ibukota_provinsi",
   options: {
-    label: "Kota/Kab"
+    label: "Ibukota Provinsi"
   },
-  create: KotaKabCreate,
-  edit: KotaKabEdit,
-  list: KotaKabList
+  create: IbukotaProvinsiCreate,
+  edit: IbukotaProvinsiEdit,
+  list: IbukotaProvinsiList
 };
 
 const components = {

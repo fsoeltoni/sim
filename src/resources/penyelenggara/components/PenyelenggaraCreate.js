@@ -12,6 +12,7 @@ import {
 } from "react-admin";
 import moment from "moment";
 import penyelenggara from "..";
+import ibukota_provinsi_src from "../../ibukota_provinsi";
 import lingkup_src from "../../lingkup";
 import jenis_pomdam_src from "../../jenis_pomdam";
 import PersonelForm from "../../personel/components/PersonelForm";
@@ -23,7 +24,8 @@ const created = moment();
 const PenyelenggaraCreate = ({ permissions, ...props }) => {
   const {
     components: { create },
-    fields: { lingkup, jenis_pomdam, nama, kode_romawi, kode, markas }
+    fields: { lingkup, jenis_pomdam, nama, kode_romawi, kode, markas, stempel },
+    prefix
   } = penyelenggara;
   const [personel, setPersonel] = useState();
 
@@ -70,11 +72,13 @@ const PenyelenggaraCreate = ({ permissions, ...props }) => {
           </FormDataConsumer>
 
           <TextInput {...kode} />
-          <TextInput {...markas} />
+          <ReferenceInput {...markas}>
+            <SelectInput optionText={ibukota_provinsi_src.fields.nama.source} />
+          </ReferenceInput>
         </FormTab>
         <FormTab label="Komandan">
           <PersonelForm
-            prefix="komandan"
+            prefix={prefix}
             setPersonel={setPersonel}
             personel={personel}
           />
@@ -83,14 +87,8 @@ const PenyelenggaraCreate = ({ permissions, ...props }) => {
           <SignaturePadInput />
         </FormTab>
         <FormTab label="Stempel">
-          <ImageInput
-            source="stempel"
-            label="Stempel"
-            accept="image/*"
-            multiple={false}
-            placeholder={<p>Masukkan stempel</p>}
-          >
-            <ImageField source="src" title="title" />
+          <ImageInput {...stempel}>
+            <ImageField source="src" title="Stempel penyelenggara" />
           </ImageInput>
         </FormTab>
       </TabbedForm>

@@ -34,7 +34,7 @@ const JenisPengajuanSimCreate = ({ permissions, ...props }) => {
     updated: moment.now()
   };
 
-  return (
+  return permissions ? (
     <Create {...props} {...components.create}>
       <SimpleForm
         variant="outlined"
@@ -45,7 +45,7 @@ const JenisPengajuanSimCreate = ({ permissions, ...props }) => {
         <TextInput {...fields.kode} />
       </SimpleForm>
     </Create>
-  );
+  ) : null;
 };
 
 const JenisPengajuanSimEdit = ({ permissions, ...props }) => {
@@ -53,18 +53,18 @@ const JenisPengajuanSimEdit = ({ permissions, ...props }) => {
     updated: moment()
   };
 
-  return (
+  return permissions ? (
     <Edit {...props} {...components.edit}>
       <SimpleForm variant="outlined" initialValues={initialValues}>
         <TextInput {...fields.nama} />
         <TextInput {...fields.kode} />
       </SimpleForm>
     </Edit>
-  );
+  ) : null;
 };
 
 const JenisPengajuanSimList = ({ permissions, ...props }) => {
-  return (
+  return permissions ? (
     <List {...props} {...components.list}>
       <Datagrid>
         <TextField {...fields.nama} />
@@ -73,7 +73,7 @@ const JenisPengajuanSimList = ({ permissions, ...props }) => {
         <DeleteButton />
       </Datagrid>
     </List>
-  );
+  ) : null;
 };
 
 const identities = {

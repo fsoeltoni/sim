@@ -14,6 +14,11 @@ import gol_darah_src from "../../gol_darah";
 import pangkat_src from "../../pangkat";
 import korps_src from "../../korps";
 import personel_src from "../../personel";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  block: { display: "flex", width: 255 }
+});
 
 const PersonelForm = ({ fields, prefix, personel, setPersonel, ...rest }) => {
   const {
@@ -28,7 +33,7 @@ const PersonelForm = ({ fields, prefix, personel, setPersonel, ...rest }) => {
     korps,
     kesatuan
   } = personel_src.fields(prefix);
-
+  const classes = useStyles();
   const form = useForm();
   const dataProvider = useDataProvider();
 
@@ -88,6 +93,7 @@ const PersonelForm = ({ fields, prefix, personel, setPersonel, ...rest }) => {
         {...jenis_personel}
         {...rest}
         onChange={handleJenisPersonelIdOnChange}
+        className={classes.block}
       >
         <SelectInput optionText={jenis_personel_src.fields.nama.source} />
       </ReferenceInput>
@@ -98,21 +104,26 @@ const PersonelForm = ({ fields, prefix, personel, setPersonel, ...rest }) => {
               {...no_identitas}
               {...formDataRest}
               onChange={handleNoIdentitasChange}
+              className={classes.block}
             />
           )
         }
       </FormDataConsumer>
 
-      <TextInput {...nama} {...rest} />
-      <TextInput {...tempat_lahir} {...rest} />
-      <DateInput {...tanggal_lahir} {...rest} />
-      <ReferenceInput {...gol_darah} {...rest}>
+      <TextInput {...nama} {...rest} className={classes.block} />
+      <TextInput {...tempat_lahir} {...rest} className={classes.block} />
+      <DateInput {...tanggal_lahir} {...rest} className={classes.block} />
+      <ReferenceInput {...gol_darah} {...rest} className={classes.block}>
         <SelectInput optionText={gol_darah_src.fields.nama.source} />
       </ReferenceInput>
       <FormDataConsumer {...rest}>
         {({ formData, ...formDataRest }) =>
           isAnggotaTniAd(formData) && (
-            <ReferenceInput {...pangkat} {...formDataRest}>
+            <ReferenceInput
+              {...pangkat}
+              {...formDataRest}
+              className={classes.block}
+            >
               <SelectInput optionText={pangkat_src.fields.nama.source} />
             </ReferenceInput>
           )
@@ -121,7 +132,11 @@ const PersonelForm = ({ fields, prefix, personel, setPersonel, ...rest }) => {
       <FormDataConsumer {...rest}>
         {({ formData, ...formDataRest }) =>
           isAnggotaTniAd(formData) && (
-            <ReferenceInput {...korps} {...formDataRest}>
+            <ReferenceInput
+              {...korps}
+              {...formDataRest}
+              className={classes.block}
+            >
               <SelectInput optionText={korps_src.fields.nama.source} />
             </ReferenceInput>
           )
@@ -130,7 +145,11 @@ const PersonelForm = ({ fields, prefix, personel, setPersonel, ...rest }) => {
       <FormDataConsumer {...rest}>
         {({ formData, ...formDataRest }) =>
           isAnggotaTniAd(formData) && (
-            <TextInput {...kesatuan} {...formDataRest} />
+            <TextInput
+              {...kesatuan}
+              {...formDataRest}
+              className={classes.block}
+            />
           )
         }
       </FormDataConsumer>

@@ -17,6 +17,7 @@ const SimPrint = ({
   const [jenis_pengajuan_sim, setPengajuanSim] = useState();
   const [gol_sim, setGolonganSim] = useState();
   const [penyelenggara, setPenyelenggara] = useState();
+  const [markas, setMarkas] = useState();
   const [komandan, setKomandan] = useState();
   const [pangkat_komandan, setPangkatKomandan] = useState();
   const [korps_komandan, setKorpsKomandan] = useState();
@@ -53,6 +54,10 @@ const SimPrint = ({
 
               setKomandan(data);
             });
+
+          dataProvider
+            .getOne("ibukota_provinsi", { id: data.markas_id })
+            .then(({ data }) => setMarkas(data));
 
           setPenyelenggara(data);
         });
@@ -129,7 +134,7 @@ const SimPrint = ({
       : null
     : null;
   const display_tanda_tangan = sim ? sim.tanda_tangan : null;
-  const display_diberikan_di = penyelenggara ? penyelenggara.markas : null;
+  const display_diberikan_di = markas ? markas.nama : null;
   const display_pada_tanggal = sim
     ? moment(sim.created).format("DD-MM-YYYY")
     : null;
@@ -169,7 +174,7 @@ const SimPrint = ({
     ? penyelenggara.tanda_tangan
     : null;
 
-  console.log(display_sidik_jari);
+  const display_stempel = penyelenggara ? penyelenggara.stempel : null;
 
   return (
     <Card>
@@ -185,8 +190,7 @@ const SimPrint = ({
           display_berlaku_hingga &&
           display_label_komandan &&
           display_nama_komandan &&
-          display_pangkat_korps_no_identitas_komandan &&
-          display_pas_foto && (
+          display_pangkat_korps_no_identitas_komandan && (
             <SimCanvas
               ref={componentRef}
               sim_id={display_sim_id}
@@ -208,6 +212,7 @@ const SimPrint = ({
               tanda_tangan={display_tanda_tangan}
               tanda_tangan_komandan={display_tanda_tangan_komandan}
               sidik_jari={display_sidik_jari}
+              stempel={display_stempel}
             />
           )}
       </CardContent>

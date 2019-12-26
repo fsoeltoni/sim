@@ -4,6 +4,9 @@ import { properties } from "../attrs";
 import personel from "../personel";
 import PenyelenggaraCreate from "./components/PenyelenggaraCreate";
 import PenyelenggaraList from "./components/PenyelenggaraList";
+import ibukota_provinsi from "../ibukota_provinsi";
+
+const prefix = "komandan";
 
 const fields = {
   id: {
@@ -41,10 +44,31 @@ const fields = {
     label: "Kode"
   },
   markas: {
-    source: "markas",
-    label: "Markas"
+    source: "markas_id",
+    label: "Markas",
+    reference: ibukota_provinsi.identities.name,
+    sort: {
+      field: ibukota_provinsi.fields.id.source,
+      order: "ASC"
+    }
   },
-  komandan: { ...personel.fields("komandan") }
+  komandan_fields: { ...personel.fields(prefix) },
+  komandan: {
+    source: "komandan_id",
+    label: "Komandan",
+    reference: personel.identities.name
+  },
+  tanda_tangan_komandan: {
+    source: "tanda_tangan_komandan",
+    label: "Tanda Tangan Komandan"
+  },
+  stempel: {
+    source: "stempel",
+    label: "Stempel",
+    accept: "image/*",
+    multiple: false,
+    placeholder: "Pilih stempel."
+  }
 };
 
 const identities = {
@@ -77,4 +101,4 @@ const helpers = {
     (kode_romawi ? kode_romawi + "/" : "") + kode
 };
 
-export default { identities, fields, components, helpers };
+export default { identities, fields, components, helpers, prefix };

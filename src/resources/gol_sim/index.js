@@ -30,7 +30,7 @@ const GolSimCreate = ({ permissions, ...props }) => {
     updated: moment.now()
   };
 
-  return (
+  return permissions ? (
     <Create {...props} {...components.create}>
       <SimpleForm
         variant="outlined"
@@ -40,7 +40,7 @@ const GolSimCreate = ({ permissions, ...props }) => {
         <TextInput {...fields.nama} />
       </SimpleForm>
     </Create>
-  );
+  ) : null;
 };
 
 const GolSimEdit = ({ permissions, ...props }) => {
@@ -48,17 +48,17 @@ const GolSimEdit = ({ permissions, ...props }) => {
     updated: moment()
   };
 
-  return (
+  return permissions ? (
     <Edit {...props} {...components.edit}>
       <SimpleForm variant="outlined" initialValues={initialValues}>
         <TextInput {...fields.nama} />
       </SimpleForm>
     </Edit>
-  );
+  ) : null;
 };
 
 const GolSimList = ({ permissions, ...props }) => {
-  return (
+  return permissions ? (
     <List {...props} {...components.list}>
       <Datagrid>
         <TextField {...fields.nama} />
@@ -66,7 +66,7 @@ const GolSimList = ({ permissions, ...props }) => {
         <DeleteButton />
       </Datagrid>
     </List>
-  );
+  ) : null;
 };
 
 const identities = {
