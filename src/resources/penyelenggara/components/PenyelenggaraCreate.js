@@ -8,7 +8,8 @@ import {
   FormDataConsumer,
   ImageInput,
   ImageField,
-  FormTab
+  FormTab,
+  AutocompleteInput
 } from "react-admin";
 import moment from "moment";
 import penyelenggara from "..";
@@ -73,7 +74,9 @@ const PenyelenggaraCreate = ({ permissions, ...props }) => {
 
           <TextInput {...kode} />
           <ReferenceInput {...markas}>
-            <SelectInput optionText={ibukota_provinsi_src.fields.nama.source} />
+            <AutocompleteInput
+              optionText={ibukota_provinsi_src.fields.nama.source}
+            />
           </ReferenceInput>
         </FormTab>
         <FormTab label="Komandan">

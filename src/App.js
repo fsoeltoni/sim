@@ -18,12 +18,18 @@ import sim from "./resources/sim";
 import route from "./providers/route";
 import jenis_pengguna from "./resources/jenis_pengguna";
 import ibukota_provinsi from "./resources/ibukota_provinsi";
+import indonesianMessages from "ra-language-indonesian";
+import polyglotI18nProvider from "ra-i18n-polyglot";
 
 const dataProvider = data;
 const authProvider = auth;
 const customRoutes = route;
+
+const i18nProvider = polyglotI18nProvider(() => indonesianMessages, "id");
+
 const App = () => (
   <Admin
+    i18nProvider={i18nProvider}
     title={title}
     dataProvider={dataProvider}
     authProvider={authProvider}
